@@ -30,11 +30,11 @@ export default function Home() {
 					<picture>
 						<source
 							media="(max-width: 640px)"
-							srcSet="/images/champio-home-hero-dispatch-mobile-v5.webp"
+							srcSet="/images/champio-home-hero-controlled-chain-mobile-v6.webp"
 						/>
 						<img
-							src="/images/champio-home-hero-dispatch-v25.webp"
-							alt="Рефрижератор выезжает из производственного комплекса Champio перед рассветом"
+							src="/images/champio-home-hero-controlled-chain-v26.webp"
+							alt="Контролируемая цепочка Champio от климатических камер до рефрижераторной отгрузки"
 							fetchPriority="high"
 						/>
 					</picture>
