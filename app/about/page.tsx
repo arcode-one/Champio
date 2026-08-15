@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { PageHero } from "@/components/ui/PageHero";
 import { companyFacts } from "@/data/site";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
   title: "О компании",
@@ -63,7 +64,7 @@ export default function AboutPage() {
       <section className="editorial-image section--forest">
         <div className="editorial-image__media" data-parallax>
           <img
-            src="/images/champio-about-careful-harvest.webp"
+            src={withBasePath("/images/champio-about-careful-harvest.webp")}
             alt="Ручной сбор одного зрелого шампиньона на производстве Champio"
             loading="lazy"
           />

@@ -3,6 +3,7 @@ import { ActionLink } from "@/components/ui/ActionLink";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { products } from "@/data/site";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
   title: "Продукция",
@@ -30,7 +31,7 @@ export default function ProductsPage() {
           {products.map((product, index) => (
             <article className="catalog-card" key={product.code}>
               <div className={`catalog-card__visual catalog-card__visual--${index + 1}`}>
-                <img src={product.image} alt={product.imageAlt} loading="lazy" />
+                <img src={withBasePath(product.image)} alt={product.imageAlt} loading="lazy" />
                 <span>{product.size}</span>
               </div>
               <div className="catalog-card__body">
@@ -75,7 +76,7 @@ export default function ProductsPage() {
             <ActionLink href="/partners" variant="light">Запросить спецификацию</ActionLink>
           </div>
           <div className="product-use__media" data-parallax>
-            <img src="/images/champio-professional-kitchen.webp" alt="Чистые шампиньоны в транспортном ящике на профессиональной кухне" loading="lazy" />
+            <img src={withBasePath("/images/champio-professional-kitchen.webp")} alt="Чистые шампиньоны в транспортном ящике на профессиональной кухне" loading="lazy" />
           </div>
         </div>
       </section>

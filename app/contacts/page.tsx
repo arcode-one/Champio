@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { PageHero } from "@/components/ui/PageHero";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
   title: "Контакты",
@@ -38,7 +39,7 @@ export default function ContactsPage() {
         <div className="contact-map__grid container">
           <div className="contact-map__visual">
             <img
-              src="/images/champio-geography-ural.webp"
+              src={withBasePath("/images/champio-geography-ural.webp")}
               alt="Рефрижератор на маршруте из Екатеринбурга по Уралу"
               loading="lazy"
               draggable={false}

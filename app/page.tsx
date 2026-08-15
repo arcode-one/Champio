@@ -8,6 +8,7 @@ import {
 	productionStages,
 	products,
 } from "@/data/site";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
 	title: "Свежие шампиньоны для большого рынка",
@@ -30,10 +31,10 @@ export default function Home() {
 					<picture>
 						<source
 							media="(max-width: 640px)"
-							srcSet="/images/champio-home-hero-controlled-chain-mobile-v6.webp"
+							srcSet={withBasePath("/images/champio-home-hero-controlled-chain-mobile-v6.webp")}
 						/>
 						<img
-							src="/images/champio-home-hero-controlled-chain-v26.webp"
+							src={withBasePath("/images/champio-home-hero-controlled-chain-v26.webp")}
 							alt="Контролируемая цепочка Champio от климатических камер до рефрижераторной отгрузки"
 							fetchPriority="high"
 						/>
@@ -147,7 +148,7 @@ export default function Home() {
 
 				<div className="facility-feature__media" data-parallax>
 					<img
-						src="/images/champio-full-cycle-chambers.webp"
+						src={withBasePath("/images/champio-full-cycle-chambers.webp")}
 						alt="Независимые климатические камеры Champio с урожаем на разных стадиях цикла"
 						loading="lazy"
 					/>
@@ -217,7 +218,7 @@ export default function Home() {
 				<div className="product-showcase__body container">
 					<div className="product-showcase__media" data-parallax>
 						<img
-							src="/images/champio-product.png"
+							src={withBasePath("/images/champio-product.png")}
 							alt="Шампиньоны Champio разных калибров в транспортной и потребительской упаковке"
 							loading="lazy"
 						/>
@@ -308,7 +309,7 @@ export default function Home() {
 
 					<div className="cold-chain__media" data-parallax>
 						<img
-							src="/images/champio-fresh-logistics.webp"
+							src={withBasePath("/images/champio-fresh-logistics.webp")}
 							alt="Ящики с шампиньонами Champio на охлаждаемой линии комплектации"
 							loading="lazy"
 						/>
@@ -328,7 +329,7 @@ export default function Home() {
 				<div className="quality-teaser__grid container">
 					<div className="quality-teaser__media" data-parallax>
 						<img
-							src="/images/champio-quality-control.webp"
+							src={withBasePath("/images/champio-quality-control.webp")}
 							alt="Ручной контроль качества шампиньонов Champio на производственной линии"
 							loading="lazy"
 						/>

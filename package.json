@@ -9,6 +9,7 @@
     "install:ci": "bash scripts/install-ci.sh",
     "dev": "vinext dev --hostname 0.0.0.0 --port 5173",
     "build": "bash scripts/build-verified.sh",
+    "build:pages": "next build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "validate:artifact": "bash scripts/validate-artifact.sh",

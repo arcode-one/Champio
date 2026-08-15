@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
   title: "Качество",
@@ -46,7 +47,7 @@ export default function QualityPage() {
       <section className="traceability section section--moss">
         <div className="traceability__grid container">
           <div className="traceability__media" data-parallax>
-            <img src="/images/champio-traceability-inspection.webp" alt="Проверка чистого белого шампиньона перед упаковкой" loading="lazy" />
+            <img src={withBasePath("/images/champio-traceability-inspection.webp")} alt="Проверка чистого белого шампиньона перед упаковкой" loading="lazy" />
           </div>
           <div className="traceability__content">
             <span className="eyebrow eyebrow--light">Прослеживаемость</span>

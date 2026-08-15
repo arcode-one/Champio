@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { withBasePath } from "@/data/site-url";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -25,7 +26,7 @@ export function PageHero({
         className={`page-hero__media${staticImage ? " page-hero__media--static" : ""}`}
         data-parallax={staticImage ? undefined : "hero"}
       >
-        <img src={image} alt={imageAlt} fetchPriority="high" />
+        <img src={withBasePath(image)} alt={imageAlt} fetchPriority="high" />
       </div>
       <div className="page-hero__shade" />
       <div className="page-hero__content container">

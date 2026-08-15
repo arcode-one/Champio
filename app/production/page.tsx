@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { PageHero } from "@/components/ui/PageHero";
+import { withBasePath } from "@/data/site-url";
 
 export const metadata: Metadata = {
   title: "Производство",
@@ -67,7 +68,7 @@ export default function ProductionPage() {
       <section className="production-photo section--forest">
         <div className="production-photo__media" data-parallax>
           <img
-            src="/images/champio-independent-climate-chambers.webp"
+            src={withBasePath("/images/champio-independent-climate-chambers.webp")}
             alt="Независимые климатические камеры Champio на разных стадиях производственного цикла"
             loading="lazy"
           />
