@@ -43,7 +43,11 @@
 }
 
 @media (min-width: 821px) {
-  .home-hero__shade { background: transparent; }
+  .home-hero__shade {
+    background:
+      linear-gradient(90deg, rgba(6, 13, 10, 0.4) 0%, rgba(6, 13, 10, 0.2) 44%, rgba(6, 13, 10, 0.02) 72%),
+      linear-gradient(180deg, rgba(6, 13, 10, 0.06) 0%, transparent 48%, rgba(6, 13, 10, 0.3) 100%);
+  }
   .home-hero__bottom p { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.82); }
 }
 

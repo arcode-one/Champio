@@ -30,11 +30,11 @@ export default function Home() {
 					<picture>
 						<source
 							media="(max-width: 640px)"
-							srcSet="/images/champio-home-hero-full-cycle-mobile-v2.webp"
+							srcSet="/images/champio-home-hero-campus-mobile-v3.webp"
 						/>
 						<img
-							src="/images/champio-home-hero-full-cycle-v22.webp"
-							alt="Полный цикл Champio: выращивание, сортировка, упаковка и отгрузка шампиньонов"
+							src="/images/champio-home-hero-campus-v23.webp"
+							alt="Производственный комплекс Champio и рефрижераторы у зоны отгрузки"
 							fetchPriority="high"
 						/>
 					</picture>
