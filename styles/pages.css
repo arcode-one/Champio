@@ -160,7 +160,7 @@
 .stage-row__number { color: rgba(23, 32, 24, 0.42); font-size: 10px; }
 .stage-row h3 { font-size: clamp(24px, 2.6vw, 40px); font-weight: 400; letter-spacing: -0.05em; }
 .stage-row p { max-width: 510px; color: rgba(23, 32, 24, 0.6); font-size: 13px; line-height: 1.55; }
-.stage-row__symbol { justify-self: end; color: var(--color-moss); font-size: 25px; }
+.stage-row__symbol { width: 24px; height: 24px; justify-self: end; color: var(--color-moss); }
 
 .production-photo { position: relative; min-height: 930px; overflow: hidden; color: var(--color-white); }
 .production-photo__media { position: absolute; inset: 0; }

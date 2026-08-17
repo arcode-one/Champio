@@ -8,6 +8,21 @@ export function ArrowIcon({ className }: IconProps) {
   );
 }
 
+export function DiagonalArrowIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M6 6l12 12M11 18h7v-7"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
+
 export function MushroomMark({ className }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 42 42" aria-hidden="true">

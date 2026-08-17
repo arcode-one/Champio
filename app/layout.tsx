@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppMotion } from "@/components/animations/AppMotion";
+import { RouteScrollReset } from "@/components/animations/RouteScrollReset";
 import { FloatingArcodeCta } from "@/components/layout/FloatingArcodeCta";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -46,6 +47,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href={withBasePath("/favicon.svg?v=2")} type="image/svg+xml" />
       </head>
       <body id="top">
+        <RouteScrollReset />
         <a className="skip-link" href="#content">Перейти к содержимому</a>
         <SiteHeader />
         <AppMotion>

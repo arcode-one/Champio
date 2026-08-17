@@ -27,7 +27,10 @@ export function FloatingArcodeCta() {
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsFooterCtaVisible(entry.isIntersecting),
-      { threshold: 0.15 },
+      {
+        threshold: 0,
+        rootMargin: "0px 0px 80px 0px",
+      },
     );
 
     observer.observe(footerCta);

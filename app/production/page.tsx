@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ActionLink } from "@/components/ui/ActionLink";
+import { DiagonalArrowIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
 
@@ -59,7 +60,7 @@ export default function ProductionPage() {
               <span className="stage-row__number">{number}</span>
               <h3>{title}</h3>
               <p>{text}</p>
-              <span className="stage-row__symbol">↘</span>
+              <DiagonalArrowIcon className="stage-row__symbol" />
             </article>
           ))}
         </div>

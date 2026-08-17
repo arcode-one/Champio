@@ -351,7 +351,6 @@
   color: var(--color-white);
   font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
   opacity: 0;
   pointer-events: none;
   backdrop-filter: blur(14px);
