@@ -27,15 +27,15 @@ export default function Home() {
 	return (
 		<>
 			<section className="home-hero">
-				<div className="home-hero__media" data-parallax="subtle">
+				<div className="home-hero__media">
 					<picture>
 						<source
 							media="(max-width: 640px)"
-							srcSet={withBasePath("/images/champio-home-hero-controlled-chain-mobile-v6.webp")}
+							srcSet={withBasePath("/images/champio-home-hero-wholesale-production.webp")}
 						/>
 						<img
-							src={withBasePath("/images/champio-home-hero-controlled-chain-v26.webp")}
-							alt="Контролируемая цепочка Champio от климатических камер до рефрижераторной отгрузки"
+							src={withBasePath("/images/champio-home-hero-wholesale-production.webp")}
+							alt="Оптовая отгрузка свежих шампиньонов с производства Champio"
 							fetchPriority="high"
 						/>
 					</picture>
@@ -50,16 +50,16 @@ export default function Home() {
 
 					<h1
 						className="home-hero__title"
-						aria-label="Выращиваем шампиньоны для большого рынка"
+						aria-label="Шампиньоны оптом от производителя"
 					>
 						<span className="text-mask">
-							<span data-hero-word>Выращиваем</span>
+							<span data-hero-word>Шампиньоны</span>
 						</span>
 						<span className="text-mask">
-							<span data-hero-word>шампиньоны</span>
+							<span data-hero-word>оптом от</span>
 						</span>
 						<span className="text-mask">
-							<span data-hero-word>для большого рынка</span>
+							<span data-hero-word>производителя</span>
 						</span>
 					</h1>
 
