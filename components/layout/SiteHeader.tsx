@@ -11,6 +11,23 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  function handleHomeClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    setMenuOpen(false);
+
+    if (pathname !== "/") return;
+
+    event.preventDefault();
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    });
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
     onScroll();
@@ -30,7 +47,7 @@ export function SiteHeader() {
       }`}
     >
       <div className="site-header__inner container">
-        <Link className="site-logo" href="/" aria-label="Champio — на главную" onClick={() => setMenuOpen(false)}>
+        <Link className="site-logo" href="/" aria-label="Champio — на главную" onClick={handleHomeClick}>
           <MushroomMark className="site-logo__mark" />
           <span className="site-logo__word">Champio</span>
         </Link>
@@ -74,7 +91,7 @@ export function SiteHeader() {
 
       <div className="mobile-menu" id="mobile-menu" aria-hidden={!menuOpen}>
         <nav className="mobile-menu__nav" aria-label="Мобильная навигация">
-          <Link className="mobile-menu__link" href="/" onClick={() => setMenuOpen(false)}>
+          <Link className="mobile-menu__link" href="/" onClick={handleHomeClick}>
             <span>00</span>Главная
           </Link>
           {navigation.map((item, index) => {
