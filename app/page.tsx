@@ -23,6 +23,9 @@ const tickerMessages = [
 	"Контроль каждой партии",
 ];
 
+const heroDescription =
+	"Контролируем каждый этап — от климата в камере до температуры при доставке. Чтобы сети и производства получали стабильный объём точно в срок.";
+
 export default function Home() {
 	return (
 		<>
@@ -48,27 +51,28 @@ export default function Home() {
 						Круглогодичное производство · B2B
 					</div>
 
-					<h1
-						className="home-hero__title"
-						aria-label="Шампиньоны оптом от производителя"
-					>
-						<span className="text-mask">
-							<span data-hero-word>Шампиньоны</span>
-						</span>
-						<span className="text-mask">
-							<span data-hero-word>оптом от</span>
-						</span>
-						<span className="text-mask">
-							<span data-hero-word>производителя</span>
-						</span>
-					</h1>
+					<div className="home-hero__headline">
+						<h1
+							className="home-hero__title"
+							aria-label="Шампиньоны оптом от производителя"
+						>
+							<span className="text-mask">
+								<span data-hero-word>Шампиньоны</span>
+							</span>
+							<span className="text-mask">
+								<span data-hero-word>оптом от</span>
+							</span>
+							<span className="text-mask">
+								<span data-hero-word>производителя</span>
+							</span>
+						</h1>
+						<p className="home-hero__mobile-copy" data-hero-copy>
+							{heroDescription}
+						</p>
+					</div>
 
 					<div className="home-hero__bottom" data-hero-copy>
-						<p>
-							Контролируем каждый этап — от климата в камере до температуры при
-							доставке. Чтобы сети и производства получали стабильный объём
-							точно в срок.
-						</p>
+						<p>{heroDescription}</p>
 						<ActionLink href="/partners" variant="light">
 							Стать партнёром
 						</ActionLink>
