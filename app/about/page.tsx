@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { PageHero } from "@/components/ui/PageHero";
 import { companyFacts } from "@/data/site";
 import { withBasePath } from "@/data/site-url";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "О компании",
-  description: "Champio — технологичное производство свежих шампиньонов для крупных оптовых покупателей.",
-};
+const pageTitle = "О компании";
+const pageDescription =
+  "Champio — технологичное производство свежих шампиньонов в Екатеринбурге для торговых сетей, дистрибьюторов, HoReCa и пищевых производств.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/about",
+  keywords: ["производство шампиньонов Екатеринбург", "компания Champio"],
+});
 
 const values = [
   { title: "Предсказуемость", text: "Планируем загрузку камер и сбор под контрактные объёмы партнёров." },
@@ -19,6 +27,18 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/about",
+          title: pageTitle,
+          description: pageDescription,
+          type: "AboutPage",
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "О компании", path: "/about" },
+          ],
+        })}
+      />
       <PageHero
         index="01"
         eyebrow="О компании"

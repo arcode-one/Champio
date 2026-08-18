@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { DiagonalArrowIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "Производство",
-  description: "Полный цикл выращивания, сортировки, охлаждения и отгрузки шампиньонов Champio.",
-};
+const pageTitle = "Производство шампиньонов полного цикла";
+const pageDescription =
+  "Полный цикл производства шампиньонов Champio: компост, микроклимат, ручной сбор, калибровка, быстрое охлаждение и отгрузка.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/production",
+  keywords: ["производство шампиньонов", "выращивание шампиньонов", "полный цикл производства грибов"],
+});
 
 const fullStages = [
   ["01", "Подготовка компоста", "Проверяем структуру, влажность и однородность питательной среды до загрузки в тоннели."],
@@ -21,6 +29,17 @@ const fullStages = [
 export default function ProductionPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/production",
+          title: pageTitle,
+          description: pageDescription,
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "Производство", path: "/production" },
+          ],
+        })}
+      />
       <PageHero
         index="02"
         eyebrow="Производство"

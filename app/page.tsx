@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
 import {
@@ -9,10 +10,18 @@ import {
 	products,
 } from "@/data/site";
 import { withBasePath } from "@/data/site-url";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-	title: "Свежие шампиньоны для большого рынка",
-};
+const pageTitle = "Шампиньоны оптом от производителя";
+const pageDescription =
+	"Свежие шампиньоны оптом от производителя Champio: стабильный объём круглый год, контроль качества и холодовая доставка для сетей, HoReCa и производств.";
+
+export const metadata: Metadata = createPageMetadata({
+	title: pageTitle,
+	description: pageDescription,
+	path: "/",
+	keywords: ["купить шампиньоны оптом", "оптовая продажа шампиньонов"],
+});
 
 const tickerMessages = [
 	"Свежесть в масштабе",
@@ -29,6 +38,13 @@ const heroDescription =
 export default function Home() {
 	return (
 		<>
+			<StructuredData
+				data={createPageSchema({
+					path: "/",
+					title: pageTitle,
+					description: pageDescription,
+				})}
+			/>
 			<section className="home-hero">
 				<div className="home-hero__media">
 					<picture>

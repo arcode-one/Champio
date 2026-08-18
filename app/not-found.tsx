@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MushroomMark } from "@/components/ui/Icons";
+
+export const metadata: Metadata = {
+  title: "Страница не найдена",
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

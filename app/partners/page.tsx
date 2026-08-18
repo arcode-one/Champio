@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { partnerTypes } from "@/data/site";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "Крупным партнёрам",
-  description: "Условия оптовых поставок Champio для торговых сетей, дистрибьюторов, HoReCa и пищевых производств.",
-};
+const pageTitle = "Оптовые поставки для крупных партнёров";
+const pageDescription =
+  "Условия регулярных оптовых поставок шампиньонов Champio для торговых сетей, дистрибьюторов, HoReCa и пищевых производств.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/partners",
+  keywords: ["поставщик шампиньонов", "шампиньоны для торговых сетей", "шампиньоны HoReCa"],
+});
 
 const steps = [
   ["01", "Сверяем потребность", "Регион, недельный объём, калибр, упаковка и окна приёмки."],
@@ -19,6 +27,17 @@ const steps = [
 export default function PartnersPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/partners",
+          title: pageTitle,
+          description: pageDescription,
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "Крупным партнёрам", path: "/partners" },
+          ],
+        })}
+      />
       <PageHero
         index="05"
         eyebrow="Крупным партнёрам"

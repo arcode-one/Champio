@@ -1,16 +1,36 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "Контакты",
-  description: "Связаться с отделом оптовых продаж Champio и запросить коммерческое предложение.",
-};
+const pageTitle = "Контакты отдела оптовых продаж";
+const pageDescription =
+  "Контакты Champio: телефон и email отдела оптовых продаж свежих шампиньонов, логистика и производство в Екатеринбурге.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/contacts",
+  keywords: ["Champio контакты", "заказать шампиньоны оптом"],
+});
 
 export default function ContactsPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/contacts",
+          title: pageTitle,
+          description: pageDescription,
+          type: "ContactPage",
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "Контакты", path: "/contacts" },
+          ],
+        })}
+      />
       <PageHero
         index="06"
         eyebrow="Контакты"

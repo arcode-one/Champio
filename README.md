@@ -20,6 +20,17 @@
 - `/quality` — качество и прослеживаемость
 - `/contacts` — контакты и форма заявки
 
+## SEO
+
+Для всех страниц настроены уникальные title, description, canonical, Open Graph
+и X/Twitter Card. Проект также публикует `robots.txt`, `sitemap.xml`,
+`manifest.webmanifest` и Schema.org JSON-LD для компании, сайта, хлебных крошек
+и каталога продукции.
+
+Адрес сайта задаётся через `NEXT_PUBLIC_SITE_URL`. Коды подтверждения поисковых
+систем можно передать через `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` и
+`NEXT_PUBLIC_YANDEX_SITE_VERIFICATION` без правок в исходниках.
+
 ## Запуск
 
 Требуется Node.js 22.13 или новее.

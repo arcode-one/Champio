@@ -1,18 +1,43 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { products } from "@/data/site";
 import { withBasePath } from "@/data/site-url";
+import {
+  createPageMetadata,
+  createPageSchema,
+  createProductListSchema,
+} from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "Продукция",
-  description: "Оптовые поставки свежих шампиньонов Champio в трёх калибрах и разных форматах упаковки.",
-};
+const pageTitle = "Свежие шампиньоны оптом";
+const pageDescription =
+  "Свежие шампиньоны Champio оптом в калибрах Mini, Standard и Grande. Фасовка, маркировка и упаковка под требования покупателя.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/products",
+  keywords: ["калибры шампиньонов", "шампиньоны Mini", "шампиньоны Standard", "шампиньоны Grande"],
+});
 
 export default function ProductsPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/products",
+          title: pageTitle,
+          description: pageDescription,
+          type: "CollectionPage",
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "Продукция", path: "/products" },
+          ],
+          extra: [createProductListSchema(products)],
+        })}
+      />
       <PageHero
         index="03"
         eyebrow="Продукция"

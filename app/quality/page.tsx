@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
+import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-export const metadata: Metadata = {
-  title: "Качество",
-  description: "Контроль качества, прослеживаемость и холодовая цепь Champio.",
-};
+const pageTitle = "Контроль качества и прослеживаемость";
+const pageDescription =
+  "Система качества Champio: контроль среды выращивания, климата, сортировки, упаковки, документов и температуры каждой партии шампиньонов.";
+
+export const metadata: Metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/quality",
+  keywords: ["качество шампиньонов", "прослеживаемость продукции", "холодовая цепь"],
+});
 
 const controls = [
   ["01", "Среда выращивания", "Параметры компоста и покровной почвы до загрузки."],
@@ -20,6 +28,17 @@ const controls = [
 export default function QualityPage() {
   return (
     <>
+      <StructuredData
+        data={createPageSchema({
+          path: "/quality",
+          title: pageTitle,
+          description: pageDescription,
+          breadcrumbs: [
+            { name: "Главная", path: "/" },
+            { name: "Качество", path: "/quality" },
+          ],
+        })}
+      />
       <PageHero
         index="04"
         eyebrow="Качество"
