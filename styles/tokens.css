@@ -11,7 +11,7 @@
   --color-line: rgba(23, 32, 24, 0.18);
   --color-line-light: rgba(255, 253, 248, 0.22);
   --radius: 20px;
-  --font-sans: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --font-sans: "Onest Variable", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
   --font-display: "Iowan Old Style", "Baskerville", Georgia, "Times New Roman", serif;
   --container: 1440px;
   --gutter: clamp(20px, 3.3vw, 52px);

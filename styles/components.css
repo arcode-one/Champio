@@ -8,8 +8,8 @@
   padding: 0 18px 0 24px;
   border: 1px solid transparent;
   border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: clamp(15px, 0.9vw, 16px);
+  font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
   transition:
@@ -175,8 +175,9 @@
   grid-column: 1;
   display: flex;
   gap: 20px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -197,18 +198,19 @@
 .page-hero__title {
   width: 100%;
   max-width: none;
-  font-size: clamp(64px, 8.7vw, 168px);
+  font-size: clamp(112px, 7.5vw, 120px);
   font-weight: 500;
-  letter-spacing: -0.065em;
-  line-height: 0.88;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
   text-shadow: 0 3px 28px rgba(0, 0, 0, 0.34);
 }
 
 .page-hero__description {
   width: min(100%, 500px);
   max-width: 500px;
-  font-size: clamp(16px, 1.35vw, 20px);
-  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .page-hero--06 .page-hero__topline,
@@ -375,19 +377,27 @@
       linear-gradient(180deg, rgba(12, 16, 12, 0.3) 0%, rgba(12, 16, 12, 0.04) 42%, rgba(12, 16, 12, 0.76) 100%),
       linear-gradient(90deg, rgba(12, 16, 12, 0.28) 0%, rgba(12, 16, 12, 0.1) 65%, rgba(12, 16, 12, 0.03) 100%);
   }
-  .page-hero__topline { gap: 14px; font-size: 9px; }
+  .page-hero__topline {
+    gap: 14px;
+    font-size: clamp(10px, 2vw, 12px);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+  }
   .page-hero__heading {
     gap: clamp(24px, 4svh, 36px);
     padding-block: clamp(20px, 4svh, 38px);
   }
   .page-hero__title {
     font-size: clamp(44px, 11vw, 82px);
-    line-height: 0.9;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.94;
   }
   .page-hero__description {
     width: min(100%, 460px);
-    font-size: clamp(13px, 2.1vw, 17px);
-    line-height: 1.45;
+    font-size: clamp(14px, 2.2vw, 17px);
+    font-weight: 400;
+    line-height: 1.55;
   }
   .lead-form__heading { grid-template-columns: 1fr; }
   .lead-form__grid { grid-template-columns: 1fr; }
@@ -405,7 +415,7 @@
     padding-bottom: clamp(20px, 4svh, 30px);
   }
   .page-hero__title { font-size: clamp(40px, 12.5vw, 54px); }
-  .page-hero__description { font-size: 13px; }
+  .page-hero__description { font-size: 14px; }
 }
 
 @media (max-width: 576px) {

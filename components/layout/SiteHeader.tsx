@@ -86,36 +86,39 @@ export function SiteHeader() {
         >
           <span />
           <span />
+          <span />
         </button>
       </div>
 
-      <div className="mobile-menu" id="mobile-menu" aria-hidden={!menuOpen}>
-        <nav className="mobile-menu__nav" aria-label="Мобильная навигация">
-          <Link className="mobile-menu__link" href="/" onClick={handleHomeClick}>
-            <span>00</span>Главная
-          </Link>
-          {navigation.map((item, index) => {
-            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+      <div className="mobile-menu-viewport">
+        <div className="mobile-menu" id="mobile-menu" aria-hidden={!menuOpen}>
+          <nav className="mobile-menu__nav" aria-label="Мобильная навигация">
+            <Link className="mobile-menu__link" href="/" onClick={handleHomeClick}>
+              <span>00</span>Главная
+            </Link>
+            {navigation.map((item, index) => {
+              const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
-            return (
-              <Link
-                className={`mobile-menu__link${isActive ? " mobile-menu__link--active" : ""}`}
-                href={item.href}
-                key={item.href}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span>0{index + 1}</span>{item.label}
-              </Link>
-            );
-          })}
-          <Link className="mobile-menu__link" href="/contacts" onClick={() => setMenuOpen(false)}>
-            <span>06</span>Контакты
-          </Link>
-        </nav>
-        <div className="mobile-menu__meta">
-          <p>Оптовые поставки свежих шампиньонов</p>
-          <a href="mailto:sales@champio.ru">sales@champio.ru</a>
+              return (
+                <Link
+                  className={`mobile-menu__link${isActive ? " mobile-menu__link--active" : ""}`}
+                  href={item.href}
+                  key={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span>0{index + 1}</span>{item.label}
+                </Link>
+              );
+            })}
+            <Link className="mobile-menu__link" href="/contacts" onClick={() => setMenuOpen(false)}>
+              <span>06</span>Контакты
+            </Link>
+          </nav>
+          <div className="mobile-menu__meta">
+            <p>Оптовые поставки свежих шампиньонов</p>
+            <a href="mailto:sales@champio.ru">sales@champio.ru</a>
+          </div>
         </div>
       </div>
     </header>

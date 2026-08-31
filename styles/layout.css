@@ -47,7 +47,7 @@
 
 .site-logo__word {
   font-size: 22px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.05em;
 }
 
@@ -178,24 +178,40 @@
   width: 22px;
   height: 1px;
   background: currentColor;
-  transition: transform 0.35s var(--ease-out);
+  transition:
+    transform 0.35s var(--ease-out),
+    opacity 0.2s var(--ease-out);
 }
 
-.menu-toggle span:first-child { transform: translateY(-4px); }
-.menu-toggle span:last-child { transform: translateY(4px); }
+.menu-toggle span:first-child { transform: translateY(-6px); }
+.menu-toggle span:nth-child(2) { transform: translateY(0); }
+.menu-toggle span:last-child { transform: translateY(6px); }
 .site-header--menu-open .menu-toggle span:first-child { transform: rotate(45deg); }
+.site-header--menu-open .menu-toggle span:nth-child(2) { transform: scaleX(0); opacity: 0; }
 .site-header--menu-open .menu-toggle span:last-child { transform: rotate(-45deg); }
 
-.mobile-menu {
+.mobile-menu-viewport {
   position: fixed;
   z-index: 1;
   inset: 0;
+  visibility: hidden;
+  overflow: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 0.7s;
+}
+
+.site-header--menu-open .mobile-menu-viewport {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.mobile-menu {
+  position: absolute;
+  inset: 0;
   display: flex;
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  height: 100dvh;
-  visibility: hidden;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   gap: 28px;
@@ -211,14 +227,12 @@
   -webkit-overflow-scrolling: touch;
   transition:
     transform 0.7s var(--ease-out),
-    opacity 0.4s,
-    visibility 0.7s;
+    opacity 0.4s;
 }
 
 .mobile-menu::-webkit-scrollbar { display: none; }
 
 .site-header--menu-open .mobile-menu {
-  visibility: visible;
   transform: translateY(0);
   opacity: 1;
 }
@@ -379,7 +393,7 @@ body.menu-open .floating-arcode-cta {
   .site-header__inner { grid-template-columns: 190px minmax(0, 1fr) 190px; }
   .site-header__nav { gap: 14px; }
   .site-header__nav-link,
-  .site-header__contact { font-size: 13px; }
+  .site-header__contact { font-size: 14px; }
 }
 
 @media (max-width: 992px) {
@@ -393,11 +407,13 @@ body.menu-open .floating-arcode-cta {
   .site-header__nav,
   .site-header__contact { display: none; }
   .menu-toggle { position: relative; display: block; }
-  .mobile-menu {
+  .mobile-menu-viewport {
     inset: 68px 0 auto;
     height: calc(100vh - 68px);
     height: calc(100svh - 68px);
     height: calc(100dvh - 68px);
+  }
+  .mobile-menu {
     padding-top: clamp(20px, 4svh, 34px);
     padding-bottom: clamp(22px, 4svh, 34px);
   }

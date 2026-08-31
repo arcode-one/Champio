@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/onest";
 import "./globals.css";
 import { AppMotion } from "@/components/animations/AppMotion";
 import { RouteScrollReset } from "@/components/animations/RouteScrollReset";
