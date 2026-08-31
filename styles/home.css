@@ -668,7 +668,7 @@
   .home-hero__title { font-size: clamp(44px, 11vw, 82px); }
   .home-hero__mobile-copy {
     display: block;
-    max-width: 480px;
+    max-width: 42ch;
     color: rgba(255, 253, 248, 0.82);
     font-size: clamp(13px, 2vw, 15px);
     line-height: 1.5;
@@ -713,6 +713,7 @@
 
 @media (max-width: 640px) {
   .home-hero__media img { object-position: 84% center; }
+  .home-hero__mobile-copy { max-width: 38ch; }
   .facts { grid-template-columns: 1fr; border-top: 0; }
   .fact,
   .fact:not(:first-child) {
@@ -738,7 +739,7 @@
   }
   .home-hero__eyebrow { gap: 8px; font-size: 8px; }
   .home-hero__title { font-size: clamp(40px, 12.5vw, 54px); line-height: 0.84; }
-  .home-hero__mobile-copy { font-size: 13px; line-height: 1.45; }
+  .home-hero__mobile-copy { max-width: 34ch; font-size: 13px; line-height: 1.45; }
   .home-hero__bottom .action-link { min-height: 54px; }
 }
 
@@ -747,6 +748,6 @@
   .home-hero__headline { gap: 12px; }
   .home-hero__title { font-size: clamp(40px, 11.5vw, 58px); }
   .home-hero__bottom { gap: 12px; }
-  .home-hero__mobile-copy { max-width: 470px; font-size: 12px; line-height: 1.35; }
+  .home-hero__mobile-copy { font-size: 12px; line-height: 1.35; }
   .home-hero__bottom .action-link { min-height: 48px; }
 }

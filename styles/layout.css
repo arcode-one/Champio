@@ -276,11 +276,11 @@
 .site-footer__bottom {
   position: relative;
   display: flex;
-  min-height: 164px;
+  min-height: 140px;
   align-items: center;
   justify-content: center;
-  padding-top: 36px;
-  padding-bottom: 36px;
+  padding-top: 26px;
+  padding-bottom: 26px;
   color: rgba(255, 253, 248, 0.52);
   font-size: 13px;
 }
@@ -317,16 +317,7 @@
   background: var(--color-forest);
 }
 
-.site-footer__legal {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 30px;
-}
-
-.site-footer__legal a,
 .site-footer__copyright a { transition: color 0.25s var(--ease-out); }
-.site-footer__legal a:hover,
 .site-footer__copyright a:hover { color: var(--color-white); }
 
 .site-footer__copyright a {
@@ -395,11 +386,19 @@ body.menu-open .floating-arcode-cta {
   .site-header,
   .site-header--scrolled { height: 68px; }
   .site-header__inner { display: flex; justify-content: space-between; }
+  .site-header--menu-open .site-header__inner {
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-cream);
+  }
   .site-header__nav,
   .site-header__contact { display: none; }
   .menu-toggle { position: relative; display: block; }
   .mobile-menu {
-    padding-top: clamp(88px, 14svh, 116px);
+    inset: 68px 0 auto;
+    height: calc(100vh - 68px);
+    height: calc(100svh - 68px);
+    height: calc(100dvh - 68px);
+    padding-top: clamp(20px, 4svh, 34px);
     padding-bottom: clamp(22px, 4svh, 34px);
   }
   .mobile-menu__link {
@@ -415,12 +414,11 @@ body.menu-open .floating-arcode-cta {
 @media (max-width: 560px) {
   .mobile-menu__meta { align-items: flex-start; flex-direction: column; gap: 7px; }
   .site-footer__bottom {
-    min-height: 218px;
+    min-height: 196px;
     align-items: flex-start;
-    padding-top: 42px;
-    padding-bottom: 66px;
+    padding-top: 34px;
+    padding-bottom: 50px;
   }
-  .site-footer__legal { flex-direction: column; gap: 10px; }
   .site-footer__copyright { max-width: 290px; line-height: 1.55; }
 }
 
@@ -436,7 +434,7 @@ body.menu-open .floating-arcode-cta {
 }
 
 @media (max-width: 992px) and (max-height: 700px) {
-  .mobile-menu { gap: 16px; padding-top: 76px; padding-bottom: 18px; }
+  .mobile-menu { gap: 16px; padding-top: 12px; padding-bottom: 18px; }
   .mobile-menu__link { padding-block: 8px; font-size: clamp(27px, 5vw, 38px); }
   .mobile-menu__link span { padding-top: 3px; font-size: 8px; }
   .mobile-menu__meta { font-size: 10px; }
