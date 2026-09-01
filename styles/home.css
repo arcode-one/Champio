@@ -38,8 +38,8 @@
 .home-hero__shade {
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(8, 13, 9, 0.06) 0%, rgba(8, 13, 9, 0) 44%, rgba(8, 13, 9, 0.2) 100%),
-    linear-gradient(90deg, rgba(5, 12, 8, 0.4) 0%, rgba(5, 12, 8, 0.34) 34%, rgba(5, 12, 8, 0.2) 52%, rgba(5, 12, 8, 0.06) 68%, transparent 78%);
+    linear-gradient(180deg, rgba(8, 13, 9, 0.1) 0%, rgba(8, 13, 9, 0) 44%, rgba(8, 13, 9, 0.24) 100%),
+    linear-gradient(90deg, rgba(5, 12, 8, 0.84) 0%, rgba(5, 12, 8, 0.76) 34%, rgba(5, 12, 8, 0.48) 52%, rgba(5, 12, 8, 0.14) 70%, transparent 82%);
 }
 
 .home-hero__shade::before {
@@ -56,8 +56,8 @@
 @media (min-width: 821px) {
   .home-hero__shade {
     background:
-      linear-gradient(90deg, rgba(4, 11, 7, 0.48) 0%, rgba(4, 11, 7, 0.43) 28%, rgba(4, 11, 7, 0.31) 43%, rgba(4, 11, 7, 0.17) 56%, rgba(4, 11, 7, 0.06) 68%, transparent 79%),
-      linear-gradient(180deg, rgba(6, 13, 10, 0.04) 0%, transparent 50%, rgba(6, 13, 10, 0.22) 100%);
+      linear-gradient(90deg, rgba(4, 11, 7, 0.88) 0%, rgba(4, 11, 7, 0.8) 28%, rgba(4, 11, 7, 0.61) 43%, rgba(4, 11, 7, 0.3) 58%, rgba(4, 11, 7, 0.08) 72%, transparent 84%),
+      linear-gradient(180deg, rgba(6, 13, 10, 0.08) 0%, transparent 50%, rgba(6, 13, 10, 0.26) 100%);
   }
   .home-hero__shade::before {
     width: 68%;

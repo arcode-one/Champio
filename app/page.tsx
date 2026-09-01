@@ -50,10 +50,10 @@ export default function Home() {
 					<picture>
 						<source
 							media="(max-width: 640px)"
-							srcSet={withBasePath("/images/champio-home-hero-wholesale-production.webp")}
+							srcSet={withBasePath("/images/champio-home-hero-bright-production.webp")}
 						/>
 						<img
-							src={withBasePath("/images/champio-home-hero-wholesale-production.webp")}
+							src={withBasePath("/images/champio-home-hero-bright-production.webp")}
 							alt="Оптовая отгрузка свежих шампиньонов с производства Champio"
 							fetchPriority="high"
 						/>
