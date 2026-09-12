@@ -244,7 +244,7 @@ export default function Home() {
 
 					<div className="product-list">
 						{products.map((product) => (
-							<Link className="product-row" href={`/products#${product.title.toLowerCase()}`} key={product.code}>
+							<Link className="product-row" href="/products" key={product.code}>
 								<div>
 									<h3>{product.title}</h3>
 									<p>{product.size}</p>
