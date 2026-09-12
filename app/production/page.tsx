@@ -1,3 +1,4 @@
+import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
@@ -14,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: "/production",
-  keywords: ["производство шампиньонов", "выращивание шампиньонов", "полный цикл производства грибов"],
+
 });
 
 const fullStages = [
@@ -41,9 +42,10 @@ export default function ProductionPage() {
         })}
       />
       <PageHero
+        path="/production"
         index="02"
         eyebrow="Производство"
-        title={<>Микроклимат,<br />превращённый<br />в систему</>}
+        title={<>Производство<br />шампиньонов<br />полного цикла</>}
         description="Каждая камера Champio — отдельная управляемая среда. Мы видим параметры цикла в реальном времени и планируем сбор ещё до появления первой волны."
         image="/images/champio-production-hero-controlled-microclimate-v3.webp"
         imageAlt="Независимые климатические камеры Champio с вентиляцией и системой контроля микроклимата"
@@ -87,8 +89,7 @@ export default function ProductionPage() {
 
       <section className="production-photo section--forest">
         <div className="production-photo__media" data-parallax>
-          <img
-            src={withBasePath("/images/champio-independent-climate-chambers.webp")}
+          <img {...imageDimensions["/images/champio-independent-climate-chambers.webp"]} src={withBasePath("/images/champio-independent-climate-chambers.webp")}
             alt="Независимые климатические камеры Champio на разных стадиях производственного цикла"
             loading="lazy"
           />

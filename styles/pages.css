@@ -78,7 +78,7 @@
 
 .value-card {
   display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(44px, 7vw, 120px);
   min-height: 150px;
@@ -127,6 +127,14 @@
   line-height: 0.82;
 }
 
+.catalog-card[id], .partner-faq[id] { scroll-margin-top: 100px; }
+.partner-faq__items { margin-top: 48px; border-top: 1px solid var(--color-line); }
+.partner-faq details { padding-block: 24px; border-bottom: 1px solid var(--color-line); }
+.partner-faq summary { font-size: clamp(18px, 2vw, 24px); cursor: pointer; }
+.partner-faq details p { max-width: 850px; margin-top: 18px; font-size: 16px; line-height: 1.65; }
+.partner-faq__links { margin-top: 32px; max-width: 850px; }
+.partner-faq__links a { text-decoration: underline; text-underline-offset: 4px; }
+
 /* Production */
 .production-lead__grid { grid-template-columns: minmax(160px, 0.28fr) 1fr; }
 .production-lead__grid .display-title { grid-column: 2; }
@@ -168,7 +176,7 @@
 .production-photo__overlay { position: relative; z-index: 1; display: grid; min-height: 930px; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); grid-template-rows: auto minmax(0, 1fr) auto; column-gap: clamp(60px, 8vw, 130px); padding-top: clamp(100px, 10vw, 140px); padding-bottom: 72px; }
 .production-photo__overlay p { grid-column: 2; grid-row: 3; max-width: 450px; align-self: end; justify-self: end; color: rgba(255, 253, 248, 0.76); font-size: 16px; line-height: 1.55; }
 .production-photo__overlay strong { grid-column: 1 / -1; grid-row: 1; width: 100%; max-width: none; align-self: start; justify-self: start; font-size: clamp(52px, 7.5vw, 116px); font-weight: 400; letter-spacing: -0.065em; line-height: 0.91; text-align: left; }
-.production-photo__overlay strong span { display: block; white-space: nowrap; }
+.production-photo__overlay strong span { display: block; }
 
 .technology__heading .eyebrow { margin-bottom: 50px; }
 .technology__grid {

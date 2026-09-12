@@ -1,17 +1,18 @@
+import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { products } from "@/data/site";
-import { withBasePath } from "@/data/site-url";
+import { canonicalUrl, withBasePath } from "@/data/site-url";
 import {
   createPageMetadata,
   createPageSchema,
   createProductListSchema,
 } from "@/data/seo";
 
-const pageTitle = "Свежие шампиньоны оптом";
+const pageTitle = "Шампиньоны Mini, Standard, Grande — калибры и фасовка";
 const pageDescription =
   "Свежие шампиньоны Champio оптом в калибрах Mini, Standard и Grande. Фасовка, маркировка и упаковка под требования покупателя.";
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: "/products",
-  keywords: ["калибры шампиньонов", "шампиньоны Mini", "шампиньоны Standard", "шампиньоны Grande"],
+
 });
 
 export default function ProductsPage() {
@@ -36,12 +37,14 @@ export default function ProductsPage() {
             { name: "Продукция", path: "/products" },
           ],
           extra: [createProductListSchema(products)],
+          mainEntityId: `${canonicalUrl("/products")}#products`,
         })}
       />
       <PageHero
+        path="/products"
         index="03"
         eyebrow="Продукция"
-        title={<>Шампиньоны,<br />готовые к<br />вашей полке</>}
+        title={<>Свежие<br />шампиньоны<br />трёх калибров</>}
         description="Калибруем, фасуем и маркируем продукт под требования сети, дистрибьютора или производства. Без универсальных решений там, где важна спецификация."
         image="/images/champio-products-hero-calibrated-v3.webp"
         imageAlt="Свежие шампиньоны Champio трёх калибров на современной сортировочной линии"
@@ -54,13 +57,13 @@ export default function ProductsPage() {
         </div>
         <div className="catalog__grid container" data-reveal-group>
           {products.map((product, index) => (
-            <article className="catalog-card" key={product.code}>
+            <article className="catalog-card" id={product.title.toLowerCase()} key={product.code}>
               <div className={`catalog-card__visual catalog-card__visual--${index + 1}`}>
-                <img src={withBasePath(product.image)} alt={product.imageAlt} loading="lazy" />
+                <img {...imageDimensions[product.image]} src={withBasePath(product.image)} alt={product.imageAlt} loading="lazy" />
                 <span>{product.size}</span>
               </div>
               <div className="catalog-card__body">
-                <h3>{product.title}</h3>
+                <h3>Шампиньоны {product.title}</h3>
                 <p>{product.description}</p>
                 <div className="catalog-card__format"><strong>Форматы</strong>{product.formats}</div>
               </div>
@@ -101,7 +104,7 @@ export default function ProductsPage() {
             <ActionLink href="/partners" variant="light">Запросить спецификацию</ActionLink>
           </div>
           <div className="product-use__media" data-parallax>
-            <img src={withBasePath("/images/champio-professional-kitchen.webp")} alt="Чистые шампиньоны в транспортном ящике на профессиональной кухне" loading="lazy" />
+            <img {...imageDimensions["/images/champio-professional-kitchen.webp"]} src={withBasePath("/images/champio-professional-kitchen.webp")} alt="Чистые шампиньоны в транспортном ящике на профессиональной кухне" loading="lazy" />
           </div>
         </div>
       </section>

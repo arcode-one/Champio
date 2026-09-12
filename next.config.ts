@@ -4,13 +4,13 @@ const isGitHubPages = process.env.GITHUB_PAGES === "true";
 const pagesBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
+  trailingSlash: true,
   ...(isGitHubPages
     ? {
         output: "export" as const,
         trailingSlash: true,
         basePath: pagesBasePath,
         images: { unoptimized: true },
-        typescript: { tsconfigPath: "tsconfig.pages.json" },
       }
     : {}),
 };

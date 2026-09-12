@@ -7,6 +7,9 @@ export function RouteScrollReset() {
   const pathname = usePathname();
 
   useLayoutEffect(() => {
+    // Let the browser/Next scroll to product cards and other fragment targets.
+    if (window.location.hash) return;
+
     const root = document.documentElement;
     const previousScrollBehavior = root.style.scrollBehavior;
 

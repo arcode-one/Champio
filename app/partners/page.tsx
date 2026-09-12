@@ -4,7 +4,11 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { partnerTypes } from "@/data/site";
-import { createPageMetadata, createPageSchema } from "@/data/seo";
+import { createPageMetadata, createPageSchema, createSupplyServiceSchema, createFaqSchema } from "@/data/seo";
+import { canonicalUrl } from "@/data/site-url";
+import { company } from "@/data/company";
+import { partnerFaq } from "@/data/partner-faq";
+import Link from "next/link";
 
 const pageTitle = "Оптовые поставки для крупных партнёров";
 const pageDescription =
@@ -14,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: "/partners",
-  keywords: ["поставщик шампиньонов", "шампиньоны для торговых сетей", "шампиньоны HoReCa"],
+
 });
 
 const steps = [
@@ -32,6 +36,9 @@ export default function PartnersPage() {
           path: "/partners",
           title: pageTitle,
           description: pageDescription,
+          mainEntityId: `${canonicalUrl("/partners")}#supply`,
+          hasPartIds: [`${canonicalUrl("/partners")}#faq`],
+          extra: [createSupplyServiceSchema(), createFaqSchema(partnerFaq)],
           breadcrumbs: [
             { name: "Главная", path: "/" },
             { name: "Крупным партнёрам", path: "/partners" },
@@ -39,9 +46,10 @@ export default function PartnersPage() {
         })}
       />
       <PageHero
+        path="/partners"
         index="05"
         eyebrow="Крупным партнёрам"
-        title={<>Поставки,<br />встроенные в<br />ваш ритм</>}
+        title={<>Поставки<br />шампиньонов<br />для бизнеса</>}
         description="Champio работает только с оптовыми покупателями. Мы проектируем поставку вокруг вашего спроса: от размера гриба до времени прибытия на распределительный центр."
         image="/images/champio-partners-hero.webp"
         imageAlt="Оптовые партии шампиньонов Champio перед погрузкой в рефрижератор"
@@ -104,11 +112,26 @@ export default function PartnersPage() {
           <dl className="definition-list" data-reveal>
             <div><dt>Минимальная партия</dt><dd>от 1 палеты одного калибра</dd></div>
             <div><dt>Частота поставок</dt><dd>от 2 до 7 раз в неделю</dd></div>
-            <div><dt>География</dt><dd>ЦФО и соседние регионы</dd></div>
+            <div><dt>География</dt><dd>{company.deliveryRegion}</dd></div>
             <div><dt>Температурный режим</dt><dd>0–4°C на всём маршруте</dd></div>
             <div><dt>Маркировка</dt><dd>стандартная или под требования сети</dd></div>
             <div><dt>Документы</dt><dd>комплект на каждую поставку</dd></div>
           </dl>
+        </div>
+      </section>
+
+      <section className="partner-faq section section--cream" id="faq" aria-labelledby="faq-title">
+        <div className="container">
+          <h2 className="display-title" id="faq-title">Вопросы о поставках<br /><em>шампиньонов оптом.</em></h2>
+          <div className="partner-faq__items">
+            {partnerFaq.map(({ question, answer }) => (
+              <details key={question}>
+                <summary>{question}</summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+          <p className="partner-faq__links">Посмотрите <Link href="/products">калибры и форматы упаковки</Link>, <Link href="/quality">контроль качества</Link> или <Link href="/contacts">свяжитесь с отделом продаж</Link>.</p>
         </div>
       </section>
 

@@ -1,9 +1,9 @@
 @echo off
 cd /d "%~dp0"
 
-if not exist "node_modules\.bin\vinext.cmd" (
+if not exist "node_modules\.bin\next.cmd" (
   echo Installing project dependencies...
-  call npm.cmd install --include=optional
+  call npm.cmd ci
   if errorlevel 1 (
     echo Installation failed.
     pause

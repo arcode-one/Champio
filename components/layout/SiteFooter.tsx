@@ -1,6 +1,14 @@
+import Link from "next/link";
+import { navigation } from "@/data/site";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
+      <nav className="site-footer__nav container" aria-label="Разделы сайта">
+        <Link href="/">Главная</Link>
+        {navigation.map(({ href, label }) => <Link href={href} key={href}>{label}</Link>)}
+        <Link href="/contacts">Контакты</Link>
+      </nav>
       <div className="site-footer__bottom container">
         <div className="site-footer__center">
           <a

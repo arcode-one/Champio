@@ -1,9 +1,11 @@
+import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
-import { createPageMetadata, createPageSchema } from "@/data/seo";
+import { createPageMetadata, createPageSchema, organizationId } from "@/data/seo";
+import { company } from "@/data/company";
 
 const pageTitle = "Контакты отдела оптовых продаж";
 const pageDescription =
@@ -13,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: "/contacts",
-  keywords: ["Champio контакты", "заказать шампиньоны оптом"],
+
 });
 
 export default function ContactsPage() {
@@ -25,6 +27,7 @@ export default function ContactsPage() {
           title: pageTitle,
           description: pageDescription,
           type: "ContactPage",
+          mainEntityId: organizationId,
           breadcrumbs: [
             { name: "Главная", path: "/" },
             { name: "Контакты", path: "/contacts" },
@@ -32,9 +35,10 @@ export default function ContactsPage() {
         })}
       />
       <PageHero
+        path="/contacts"
         index="06"
         eyebrow="Контакты"
-        title={<>Давайте<br />сверим вашу<br />потребность</>}
+        title={<>Контакты<br />отдела продаж<br />Champio</>}
         description="Назовите объём, регион и формат продукта. Команда Champio предложит рабочую конфигурацию поставки и подготовит тестовую партию."
         image="/images/champio-contacts-hero-premium.webp"
         imageAlt="Специалисты Champio согласовывают поставку свежих шампиньонов в зоне холодовой отгрузки"
@@ -47,10 +51,10 @@ export default function ContactsPage() {
             <h2 className="display-title" data-reveal>Удобным для вас<br /><em>способом.</em></h2>
           </div>
           <div className="contact-cards" data-reveal-group>
-            <article><span>Отдел продаж</span><a href="tel:+78005501870">8 800 550-18-70</a><p>Пн–Вс, 08:00–20:00</p></article>
-            <article><span>Электронная почта</span><a href="mailto:sales@champio.ru">sales@champio.ru</a><p>Ответим в течение рабочего дня</p></article>
-            <article><span>Производство</span><strong>Екатеринбург</strong><p>Свердловская область</p></article>
-            <article><span>Для перевозчиков</span><a href="mailto:logistics@champio.ru">logistics@champio.ru</a><p>Слоты и документы на въезд</p></article>
+            <article><span>Отдел продаж</span><a href={`tel:${company.telephone}`}>{company.telephoneDisplay}</a><p>{company.salesHours}</p></article>
+            <article><span>Электронная почта</span><a href={`mailto:${company.salesEmail}`}>{company.salesEmail}</a><p>Ответим в течение рабочего дня</p></article>
+            <article><span>Производство</span><strong>{company.city}</strong><p>{company.region}</p></article>
+            <article><span>Для перевозчиков</span><a href={`mailto:${company.logisticsEmail}`}>{company.logisticsEmail}</a><p>Слоты и документы на въезд</p></article>
           </div>
         </div>
       </section>
@@ -58,8 +62,7 @@ export default function ContactsPage() {
       <section className="contact-map section--ink">
         <div className="contact-map__grid container">
           <div className="contact-map__visual">
-            <img
-              src={withBasePath("/images/champio-geography-ural.webp")}
+            <img {...imageDimensions["/images/champio-geography-ural.webp"]} src={withBasePath("/images/champio-geography-ural.webp")}
               alt="Рефрижератор на маршруте из Екатеринбурга по Уралу"
               loading="lazy"
               draggable={false}

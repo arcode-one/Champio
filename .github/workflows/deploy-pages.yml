@@ -39,7 +39,17 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://champio.arcode-dev.ru' }}
+          NEXT_PUBLIC_ALLOW_INDEXING: ${{ vars.NEXT_PUBLIC_ALLOW_INDEXING || 'true' }}
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+          NEXT_PUBLIC_YANDEX_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION }}
+
+      - name: Validate exported SEO
+        run: npm run test:seo
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://champio.arcode-dev.ru' }}
+          NEXT_PUBLIC_ALLOW_INDEXING: ${{ vars.NEXT_PUBLIC_ALLOW_INDEXING || 'true' }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

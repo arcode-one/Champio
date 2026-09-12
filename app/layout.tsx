@@ -14,6 +14,7 @@ import {
   defaultTitle,
   manifestPath,
   ogImage,
+  pageRobots,
   siteName,
 } from "@/data/seo";
 
@@ -73,17 +74,7 @@ export const metadata: Metadata = {
     title: siteName,
     statusBarStyle: "black-translucent",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: pageRobots,
   verification,
   openGraph: {
     title: defaultTitle,

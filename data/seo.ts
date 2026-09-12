@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { absoluteUrl, siteUrl, withBasePath } from "@/data/site-url";
+import { absoluteUrl, canonicalUrl, indexingEnabled, withBasePath } from "@/data/site-url";
+import { company } from "@/data/company";
+import { seoPages, type SeoPath } from "@/data/seo-pages";
+import { imageDimensions } from "@/data/image-dimensions";
 
 export const siteName = "Champio";
 export const defaultTitle = "Шампиньоны оптом от производителя — Champio";
@@ -12,43 +15,26 @@ export const ogImage = {
   alt: "Champio — шампиньоны оптом от производителя",
 };
 
-const sharedKeywords = [
-  "шампиньоны оптом",
-  "шампиньоны от производителя",
-  "свежие шампиньоны",
-  "поставки шампиньонов",
-  "производитель шампиньонов",
-  "шампиньоны Екатеринбург",
-  "шампиньоны для HoReCa",
-  "шампиньоны для торговых сетей",
-];
-
 type PageMetadataInput = {
   title: string;
   description: string;
-  path: string;
-  keywords?: string[];
+  path: SeoPath;
 };
 
 export function createPageMetadata({
   title,
   description,
   path,
-  keywords = [],
 }: PageMetadataInput): Metadata {
-  const url = absoluteUrl(path);
-  const socialTitle = path === "/" ? defaultTitle : `${title} — ${siteName}`;
+  const url = canonicalUrl(path);
+  const socialTitle = `${title} — ${siteName}`;
 
   return {
-    title,
+    title: { absolute: socialTitle },
     description,
-    keywords: [...new Set([...keywords, ...sharedKeywords])],
+    robots: pageRobots,
     alternates: {
       canonical: url,
-      languages: {
-        "ru-RU": url,
-        "x-default": url,
-      },
     },
     openGraph: {
       title: socialTitle,
@@ -68,8 +54,20 @@ export function createPageMetadata({
   };
 }
 
-export const organizationId = `${siteUrl}/#organization`;
-export const websiteId = `${siteUrl}/#website`;
+export const pageRobots: Metadata["robots"] = {
+  index: indexingEnabled,
+  follow: true,
+  googleBot: {
+    index: indexingEnabled,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
+export const organizationId = `${canonicalUrl()}#organization`;
+export const websiteId = `${canonicalUrl()}#website`;
 
 export function createOrganizationGraph() {
   return {
@@ -79,7 +77,7 @@ export function createOrganizationGraph() {
         "@type": "Organization",
         "@id": organizationId,
         name: siteName,
-        url: siteUrl,
+        url: canonicalUrl(),
         logo: {
           "@type": "ImageObject",
           url: absoluteUrl("/icon-512.png"),
@@ -93,31 +91,38 @@ export function createOrganizationGraph() {
           height: ogImage.height,
         },
         description: defaultDescription,
-        email: "sales@champio.ru",
-        telephone: "+7-800-550-18-70",
+        email: company.salesEmail,
+        telephone: company.telephone,
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Екатеринбург",
-          addressRegion: "Свердловская область",
+          addressLocality: company.city,
+          addressRegion: company.region,
           addressCountry: "RU",
         },
         areaServed: {
           "@type": "AdministrativeArea",
-          name: "Уральский федеральный округ",
+          name: company.deliveryRegion,
         },
         contactPoint: [
           {
             "@type": "ContactPoint",
+            "@id": `${canonicalUrl()}#sales`,
+            url: canonicalUrl("/contacts"),
             contactType: "оптовые продажи",
-            telephone: "+7-800-550-18-70",
-            email: "sales@champio.ru",
+            telephone: company.telephone,
+            email: company.salesEmail,
             availableLanguage: "Russian",
-            areaServed: "RU",
+            hoursAvailable: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              opens: "08:00",
+              closes: "20:00",
+            },
           },
           {
             "@type": "ContactPoint",
             contactType: "логистика",
-            email: "logistics@champio.ru",
+            email: company.logisticsEmail,
             availableLanguage: "Russian",
             areaServed: "RU",
           },
@@ -132,7 +137,7 @@ export function createOrganizationGraph() {
       {
         "@type": "WebSite",
         "@id": websiteId,
-        url: siteUrl,
+        url: canonicalUrl(),
         name: siteName,
         description: defaultDescription,
         inLanguage: "ru-RU",
@@ -143,12 +148,14 @@ export function createOrganizationGraph() {
 }
 
 type PageSchemaInput = {
-  path: string;
+  path: SeoPath;
   title: string;
   description: string;
   type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
   breadcrumbs?: Array<{ name: string; path: string }>;
   extra?: Record<string, unknown>[];
+  mainEntityId?: string;
+  hasPartIds?: string[];
 };
 
 export function createPageSchema({
@@ -158,8 +165,10 @@ export function createPageSchema({
   type = "WebPage",
   breadcrumbs = [],
   extra = [],
+  mainEntityId,
+  hasPartIds = [],
 }: PageSchemaInput) {
-  const url = absoluteUrl(path);
+  const url = canonicalUrl(path);
   const pageId = `${url}#webpage`;
   const graph: Record<string, unknown>[] = [
     {
@@ -171,11 +180,16 @@ export function createPageSchema({
       inLanguage: "ru-RU",
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
+      publisher: { "@id": organizationId },
+      ...(mainEntityId ? { mainEntity: { "@id": mainEntityId } } : {}),
+      ...(hasPartIds.length ? { hasPart: hasPartIds.map((id) => ({ "@id": id })) } : {}),
+      ...(breadcrumbs.length ? { breadcrumb: { "@id": `${url}#breadcrumbs` } } : {}),
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: ogImage.url,
-        width: ogImage.width,
-        height: ogImage.height,
+        "@id": `${url}#primaryimage`,
+        url: absoluteUrl(seoPages[path].image),
+        contentUrl: absoluteUrl(seoPages[path].image),
+        ...imageDimensions[seoPages[path].image],
       },
     },
   ];
@@ -188,7 +202,7 @@ export function createPageSchema({
         "@type": "ListItem",
         position: index + 1,
         name: item.name,
-        item: absoluteUrl(item.path),
+        item: canonicalUrl(item.path),
       })),
     });
   }
@@ -212,7 +226,7 @@ export function createProductListSchema(
 ) {
   return {
     "@type": "ItemList",
-    "@id": `${absoluteUrl("/products")}#products`,
+    "@id": `${canonicalUrl("/products")}#products`,
     name: "Свежие шампиньоны Champio",
     numberOfItems: products.length,
     itemListElement: products.map((product, index) => ({
@@ -220,11 +234,16 @@ export function createProductListSchema(
       position: index + 1,
       item: {
         "@type": "Product",
+        "@id": `${canonicalUrl("/products")}#${product.title.toLowerCase()}`,
+        url: `${canonicalUrl("/products")}#${product.title.toLowerCase()}`,
         name: `Шампиньоны Champio ${product.title}`,
         description: product.description,
         image: absoluteUrl(product.image),
         category: "Свежие шампиньоны оптом",
         brand: { "@id": organizationId },
+        manufacturer: { "@id": organizationId },
+        mainEntityOfPage: { "@id": `${canonicalUrl("/products")}#webpage` },
+        size: product.size,
         additionalProperty: [
           {
             "@type": "PropertyValue",
@@ -238,6 +257,36 @@ export function createProductListSchema(
           },
         ],
       },
+    })),
+  };
+}
+
+export function createSupplyServiceSchema() {
+  return {
+    "@type": "Service",
+    "@id": `${canonicalUrl("/partners")}#supply`,
+    url: canonicalUrl("/partners"),
+    name: "Оптовые поставки шампиньонов Champio",
+    serviceType: "Регулярные B2B-поставки свежих шампиньонов",
+    description: "Подбор калибра, упаковки и графика поставок для торговых сетей, дистрибьюторов, HoReCa и пищевых производств. Холодовая цепь 0–4°C.",
+    provider: { "@id": organizationId },
+    areaServed: { "@type": "AdministrativeArea", name: company.deliveryRegion },
+    audience: { "@type": "BusinessAudience", audienceType: "Торговые сети, дистрибьюторы, HoReCa и пищевые производства" },
+    mainEntityOfPage: { "@id": `${canonicalUrl("/partners")}#webpage` },
+  };
+}
+
+export function createFaqSchema(items: ReadonlyArray<{ question: string; answer: string }>) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${canonicalUrl("/partners")}#faq`,
+    url: `${canonicalUrl("/partners")}#faq`,
+    inLanguage: "ru-RU",
+    isPartOf: { "@id": `${canonicalUrl("/partners")}#webpage` },
+    mainEntity: items.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
     })),
   };
 }

@@ -1,3 +1,4 @@
+import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
@@ -6,7 +7,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
 import { createPageMetadata, createPageSchema } from "@/data/seo";
 
-const pageTitle = "Контроль качества и прослеживаемость";
+const pageTitle = "Качество шампиньонов и контроль каждой партии";
 const pageDescription =
   "Система качества Champio: контроль среды выращивания, климата, сортировки, упаковки, документов и температуры каждой партии шампиньонов.";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: "/quality",
-  keywords: ["качество шампиньонов", "прослеживаемость продукции", "холодовая цепь"],
+
 });
 
 const controls = [
@@ -40,9 +41,10 @@ export default function QualityPage() {
         })}
       />
       <PageHero
+        path="/quality"
         index="04"
         eyebrow="Качество"
-        title={<>Качество<br />начинается<br />до сбора</>}
+        title={<>Качество<br />шампиньонов —<br />на каждом этапе</>}
         description="Проверка готового гриба — только финальная точка. Стабильность партии формируется раньше: в компосте, микроклимате и дисциплине процесса."
         image="/images/champio-quality-hero.webp"
         imageAlt="Ручная проверка качества шампиньонов на производственной линии Champio"
@@ -66,7 +68,7 @@ export default function QualityPage() {
       <section className="traceability section section--moss">
         <div className="traceability__grid container">
           <div className="traceability__media" data-parallax>
-            <img src={withBasePath("/images/champio-traceability-inspection.webp")} alt="Проверка чистого белого шампиньона перед упаковкой" loading="lazy" />
+            <img {...imageDimensions["/images/champio-traceability-inspection.webp"]} src={withBasePath("/images/champio-traceability-inspection.webp")} alt="Проверка чистого белого шампиньона перед упаковкой" loading="lazy" />
           </div>
           <div className="traceability__content">
             <span className="eyebrow eyebrow--light">Прослеживаемость</span>

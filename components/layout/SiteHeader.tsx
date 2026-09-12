@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowIcon, MushroomMark } from "@/components/ui/Icons";
 import { navigation } from "@/data/site";
+import { company } from "@/data/company";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -117,7 +118,7 @@ export function SiteHeader() {
           </nav>
           <div className="mobile-menu__meta">
             <p>Оптовые поставки свежих шампиньонов</p>
-            <a href="mailto:sales@champio.ru">sales@champio.ru</a>
+            <a href={`mailto:${company.salesEmail}`}>{company.salesEmail}</a>
           </div>
         </div>
       </div>

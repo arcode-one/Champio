@@ -1,16 +1,15 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "@/data/site-url";
+import { absoluteUrl, canonicalUrl, indexingEnabled } from "@/data/site-url";
+import { indexablePaths, seoPages } from "@/data/seo-pages";
+import { products } from "@/data/site";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/production", "/products", "/partners", "/quality", "/contacts"];
-  const lastModified = new Date("2026-08-18T00:00:00+05:00");
-
-  return routes.map((route) => ({
-    url: absoluteUrl(route || "/"),
-    lastModified,
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/partners" ? 0.9 : 0.8,
+  if (!indexingEnabled) return [];
+  // No fabricated lastmod: add per-page dates only when editorial history is tracked.
+  return indexablePaths.map((path) => ({
+    url: canonicalUrl(path),
+    images: [absoluteUrl(seoPages[path].image), ...(path === "/products" ? products.map((product) => absoluteUrl(product.image)) : [])],
   }));
 }

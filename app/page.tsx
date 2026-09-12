@@ -1,3 +1,4 @@
+import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/components/seo/StructuredData";
@@ -20,7 +21,7 @@ export const metadata: Metadata = createPageMetadata({
 	title: pageTitle,
 	description: pageDescription,
 	path: "/",
-	keywords: ["купить шампиньоны оптом", "оптовая продажа шампиньонов"],
+
 });
 
 const tickerMessages = [
@@ -52,8 +53,7 @@ export default function Home() {
 							media="(max-width: 640px)"
 							srcSet={withBasePath("/images/champio-home-hero-bright-production.webp")}
 						/>
-						<img
-							src={withBasePath("/images/champio-home-hero-bright-production.webp")}
+						<img {...imageDimensions["/images/champio-home-hero-bright-production.webp"]} src={withBasePath("/images/champio-home-hero-bright-production.webp")}
 							alt="Оптовая отгрузка свежих шампиньонов с производства Champio"
 							fetchPriority="high"
 						/>
@@ -167,8 +167,7 @@ export default function Home() {
 				</div>
 
 				<div className="facility-feature__media" data-parallax>
-					<img
-						src={withBasePath("/images/champio-full-cycle-chambers.webp")}
+					<img {...imageDimensions["/images/champio-full-cycle-chambers.webp"]} src={withBasePath("/images/champio-full-cycle-chambers.webp")}
 						alt="Независимые климатические камеры Champio с урожаем на разных стадиях цикла"
 						loading="lazy"
 					/>
@@ -184,11 +183,11 @@ export default function Home() {
 				</div>
 
 				<div className="facility-feature__footer container">
-					<h3 data-reveal>
+					<h2 data-reveal>
 						Точный климат.
 						<br />
 						Предсказуемый результат.
-					</h3>
+					</h2>
 					<ActionLink href="/production" variant="light">
 						Как устроено производство
 					</ActionLink>
@@ -237,8 +236,7 @@ export default function Home() {
 
 				<div className="product-showcase__body container">
 					<div className="product-showcase__media" data-parallax>
-						<img
-							src={withBasePath("/images/champio-product.png")}
+						<img {...imageDimensions["/images/champio-product.png"]} src={withBasePath("/images/champio-product.png")}
 							alt="Шампиньоны Champio разных калибров в транспортной и потребительской упаковке"
 							loading="lazy"
 						/>
@@ -246,7 +244,7 @@ export default function Home() {
 
 					<div className="product-list">
 						{products.map((product) => (
-							<Link className="product-row" href="/products" key={product.code}>
+							<Link className="product-row" href={`/products#${product.title.toLowerCase()}`} key={product.code}>
 								<div>
 									<h3>{product.title}</h3>
 									<p>{product.size}</p>
@@ -267,7 +265,7 @@ export default function Home() {
 					</p>
 				</div>
 
-				<div className="b2b__title container">
+				<h2 className="b2b__title container">
 					<span className="text-mask">
 						<span data-reveal>Вы планируете спрос.</span>
 					</span>
@@ -276,7 +274,7 @@ export default function Home() {
 							<em>Мы обеспечиваем продукт.</em>
 						</span>
 					</span>
-				</div>
+				</h2>
 
 				<div className="b2b__grid container" data-reveal-group>
 					{partnerTypes.map((type) => (
@@ -328,8 +326,7 @@ export default function Home() {
 					</div>
 
 					<div className="cold-chain__media" data-parallax>
-						<img
-							src={withBasePath("/images/champio-fresh-logistics.webp")}
+						<img {...imageDimensions["/images/champio-fresh-logistics.webp"]} src={withBasePath("/images/champio-fresh-logistics.webp")}
 							alt="Ящики с шампиньонами Champio на охлаждаемой линии комплектации"
 							loading="lazy"
 						/>
@@ -348,8 +345,7 @@ export default function Home() {
 			<section className="quality-teaser section section--cream">
 				<div className="quality-teaser__grid container">
 					<div className="quality-teaser__media" data-parallax>
-						<img
-							src={withBasePath("/images/champio-quality-control.webp")}
+						<img {...imageDimensions["/images/champio-quality-control.webp"]} src={withBasePath("/images/champio-quality-control.webp")}
 							alt="Ручной контроль качества шампиньонов Champio на производственной линии"
 							loading="lazy"
 						/>

@@ -6,7 +6,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
-    // Vinext serves project images directly; its image optimizer is not used here.
+    // Static hosting serves local images with their intrinsic dimensions.
     rules: { "@next/next/no-img-element": "off" },
   },
   // Override default ignores of eslint-config-next.
@@ -14,7 +14,6 @@ const eslintConfig = defineConfig([
     // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
-    "build/**",
     "next-env.d.ts",
   ]),
 ]);

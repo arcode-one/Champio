@@ -1,7 +1,11 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { withBasePath } from "@/data/site-url";
+import { seoPages, type SeoPath } from "@/data/seo-pages";
+import { imageDimensions } from "@/data/image-dimensions";
 
 type PageHeroProps = {
+  path: Exclude<SeoPath, "/">;
   eyebrow: string;
   title: ReactNode;
   description: string;
@@ -12,6 +16,7 @@ type PageHeroProps = {
 };
 
 export function PageHero({
+  path,
   eyebrow,
   title,
   description,
@@ -26,13 +31,18 @@ export function PageHero({
         className={`page-hero__media${staticImage ? " page-hero__media--static" : ""}`}
         data-parallax={staticImage ? undefined : "hero"}
       >
-        <img src={withBasePath(image)} alt={imageAlt} fetchPriority="high" />
+        <img {...imageDimensions[image]} src={withBasePath(image)} alt={imageAlt} fetchPriority="high" />
       </div>
       <div className="page-hero__shade" />
       <div className="page-hero__content container">
         <div className="page-hero__topline">
           <span>{index}</span>
-          <span>{eyebrow}</span>
+          <nav aria-label="Хлебные крошки" className="breadcrumbs">
+            <ol>
+              <li><Link href="/">Главная</Link></li>
+              <li aria-current="page" title={eyebrow}>{seoPages[path].label}</li>
+            </ol>
+          </nav>
         </div>
         <div className="page-hero__heading">
           <h1 className="page-hero__title">
