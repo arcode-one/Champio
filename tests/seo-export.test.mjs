@@ -123,6 +123,13 @@ test("internal links, fragment targets and local images exist in the exported si
       if (target.hash) assert.ok(targetHtml.includes(`id="${decodeURIComponent(target.hash.slice(1))}"`), `${route}: missing target ${href}`);
     }
     for (const img of tags(html, "img")) {
+      // The remote Metrika fallback is an invisible tracking pixel, not content.
+      if (img.src === "https://mc.yandex.ru/watch/112723824") {
+        assert.equal(img.alt, "", `${route}: tracking pixel must have empty alt`);
+        assert.match(img.style ?? "", /position:\s*absolute/, `${route}: tracking pixel must be positioned offscreen`);
+        assert.match(img.style ?? "", /left:\s*-9999px/, `${route}: tracking pixel must be positioned offscreen`);
+        continue;
+      }
       assert.ok(img.alt?.trim(), `${route}: missing alt ${img.src}`);
       assert.ok(Number(img.width) > 0 && Number(img.height) > 0, `${route}: missing image dimensions ${img.src}`);
       const target = new URL(img.src, root);
