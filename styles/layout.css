@@ -81,13 +81,19 @@
   transform-origin: right;
   background: currentColor;
   content: "";
-  transition: transform 0.35s var(--ease-out);
+  transition: transform 0.3s var(--ease-out);
 }
 
-.site-header__nav-link:hover::after,
 .site-header__nav-link--active::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-header__nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 .site-header__nav-link--active { font-weight: 650; }
@@ -107,11 +113,10 @@
   white-space: nowrap;
   text-shadow: none;
   transition:
-    color 0.3s var(--ease-out),
-    background-color 0.3s var(--ease-out),
-    border-color 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    transform 0.3s var(--ease-out);
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.16s var(--ease-out);
 }
 
 .site-header__contact-icon {
@@ -123,8 +128,8 @@
   border-radius: 50%;
   background: rgba(23, 32, 24, 0.08);
   transition:
-    background-color 0.3s var(--ease-out),
-    transform 0.35s var(--ease-out);
+    background-color 0.2s ease,
+    transform 0.25s var(--ease-out);
 }
 
 .site-header__contact-icon svg {
@@ -132,14 +137,16 @@
   height: 15px;
 }
 
-.site-header__contact:hover {
-  transform: translateY(-2px);
-  background: var(--color-cream);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .site-header__contact:hover { background: var(--color-cream); }
+  .site-header__contact:hover .site-header__contact-icon { transform: translateX(2px); }
+  .site-header--scrolled .site-header__contact:hover {
+    background: var(--color-forest);
+    border-color: var(--color-forest);
+  }
 }
 
-.site-header__contact:hover .site-header__contact-icon { transform: translateX(2px); }
-.site-header__contact:active { transform: translateY(0); }
+.site-header__contact:active { transform: scale(0.97); }
 .site-header__contact:focus-visible {
   outline: 3px solid rgba(213, 227, 167, 0.5);
   outline-offset: 3px;
@@ -154,11 +161,6 @@
 
 .site-header--scrolled .site-header__contact-icon {
   background: rgba(255, 255, 255, 0.12);
-}
-
-.site-header--scrolled .site-header__contact:hover {
-  background: var(--color-forest);
-  border-color: var(--color-forest);
 }
 
 .menu-toggle {
@@ -199,7 +201,7 @@
   visibility: hidden;
   overflow: hidden;
   pointer-events: none;
-  transition: visibility 0s linear 0.7s;
+  transition: visibility 0s linear 0.32s;
 }
 
 .site-header--menu-open .mobile-menu-viewport {
@@ -228,8 +230,8 @@
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   transition:
-    transform 0.7s var(--ease-out),
-    opacity 0.4s;
+    transform 0.32s var(--ease-in-out),
+    opacity 0.2s ease 0.1s;
 }
 
 .mobile-menu::-webkit-scrollbar { display: none; }
@@ -237,7 +239,35 @@
 .site-header--menu-open .mobile-menu {
   transform: translateY(0);
   opacity: 1;
+  transition:
+    transform 0.5s var(--ease-drawer),
+    opacity 0.2s ease;
 }
+
+.mobile-menu__link,
+.mobile-menu__meta {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.site-header--menu-open .mobile-menu__link,
+.site-header--menu-open .mobile-menu__meta {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.35s var(--ease-out) var(--stagger, 0ms),
+    transform 0.35s var(--ease-out) var(--stagger, 0ms);
+}
+
+.mobile-menu__link:nth-child(1) { --stagger: 120ms; }
+.mobile-menu__link:nth-child(2) { --stagger: 160ms; }
+.mobile-menu__link:nth-child(3) { --stagger: 200ms; }
+.mobile-menu__link:nth-child(4) { --stagger: 240ms; }
+.mobile-menu__link:nth-child(5) { --stagger: 280ms; }
+.mobile-menu__link:nth-child(6) { --stagger: 320ms; }
+.mobile-menu__link:nth-child(7) { --stagger: 360ms; }
+.mobile-menu__meta { --stagger: 400ms; }
 
 .site-header--menu-open {
   border-bottom-color: transparent;
@@ -322,19 +352,14 @@
   font-weight: 600;
   white-space: nowrap;
   transition:
-    border-color 0.3s,
-    background-color 0.3s,
-    transform 0.3s var(--ease-out);
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.16s var(--ease-out);
 }
 
-.site-footer__arcode-cta:hover {
-  border-color: #d5e3a7;
-  transform: translateY(-2px);
-  background: var(--color-forest);
-}
+.site-footer__arcode-cta:active { transform: scale(0.97); }
 
-.site-footer__copyright a { transition: color 0.25s var(--ease-out); }
-.site-footer__copyright a:hover { color: var(--color-white); }
+.site-footer__copyright a { transition: color 0.2s ease; }
 
 .site-footer__copyright a {
   color: inherit;
@@ -353,7 +378,7 @@
   padding: 0 24px;
   border: 1px solid rgba(213, 227, 167, 0.62);
   border-radius: var(--radius);
-  transform: translateY(18px);
+  transform: translateY(12px) scale(0.96);
   background: rgba(17, 23, 17, 0.94);
   color: var(--color-white);
   font-size: 13px;
@@ -362,28 +387,41 @@
   pointer-events: none;
   backdrop-filter: blur(14px);
   transition:
-    opacity 0.35s var(--ease-out),
-    transform 0.45s var(--ease-out),
-    border-color 0.3s,
-    background-color 0.3s;
+    opacity 0.18s ease,
+    transform 0.2s var(--ease-out),
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .floating-arcode-cta--visible {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   opacity: 1;
   pointer-events: auto;
+  transition:
+    opacity 0.3s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.floating-arcode-cta--visible:active {
+  transform: scale(0.97);
+  transition-duration: 0.3s, 0.16s, 0.2s, 0.2s;
 }
 
 body.menu-open .floating-arcode-cta {
-  transform: translateY(24px);
+  transform: translateY(12px) scale(0.96);
   opacity: 0;
   pointer-events: none;
 }
 
-.floating-arcode-cta:hover {
-  border-color: #d5e3a7;
-  transform: translateY(-2px);
-  background: var(--color-forest);
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__arcode-cta:hover,
+  .floating-arcode-cta:hover {
+    border-color: #d5e3a7;
+    background: var(--color-forest);
+  }
+  .site-footer__copyright a:hover { color: var(--color-white); }
 }
 
 .floating-arcode-cta:focus-visible {

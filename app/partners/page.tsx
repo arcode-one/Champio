@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { partnerTypes } from "@/data/site";
 import { createPageMetadata, createPageSchema, createSupplyServiceSchema, createFaqSchema } from "@/data/seo";
@@ -70,7 +69,6 @@ export default function PartnersPage() {
                 "Калибр под блюдо, крупная тара и частый график свежих поставок.",
                 "Прогнозируемое сырьё для нарезки, заморозки и готовых блюд.",
               ][index]}</p>
-              <CheckIcon />
             </article>
           ))}
         </div>

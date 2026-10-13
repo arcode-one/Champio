@@ -19,5 +19,7 @@
   --hero-gutter: clamp(24px, 3.15vw, 64px);
   --gutter: clamp(20px, 3.3vw, 52px);
   --section-space: clamp(88px, 10vw, 168px);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }

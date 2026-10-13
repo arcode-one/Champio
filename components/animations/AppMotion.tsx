@@ -24,53 +24,71 @@ export function AppMotion({ children }: { children: React.ReactNode }) {
       gsap.fromTo(
         "[data-hero-word]",
         { yPercent: 115 },
-        { yPercent: 0, duration: 1.15, stagger: 0.1, ease: "power4.out" },
+        { yPercent: 0, duration: 0.95, stagger: 0.07, ease: "expo.out" },
       );
 
       gsap.fromTo(
         "[data-hero-copy]",
-        { y: 22, opacity: 0 },
+        { y: 12, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.75,
-          delay: 0.18,
-          ease: "power3.out",
+          duration: 0.6,
+          delay: 0.25,
+          ease: "power4.out",
         },
       );
 
       gsap.fromTo(
         ".site-header",
         { opacity: 0 },
-        { opacity: 1, duration: 0.8, delay: 0.25, ease: "power3.out" },
+        { opacity: 1, duration: 0.5, delay: 0.2, ease: "power2.out" },
       );
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.fromTo(
           element,
-          { y: 46, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
+            duration: 0.7,
+            ease: "power4.out",
             scrollTrigger: { trigger: element, start: "top 88%", once: true },
           },
         );
       });
+
+      // Photos open from the bottom edge once, instead of fading in like the text.
+      gsap.utils
+        .toArray<HTMLElement>(
+          ".product-showcase__media, .cold-chain__media, .quality-teaser__media, .product-use__media, .traceability__media, .contact-map__visual",
+        )
+        .forEach((media) => {
+          gsap.fromTo(
+            media,
+            { clipPath: "inset(0% 0% 100% 0% round 20px)" },
+            {
+              clipPath: "inset(0% 0% 0% 0% round 20px)",
+              duration: 1.1,
+              ease: "power3.inOut",
+              scrollTrigger: { trigger: media, start: "top 85%", once: true },
+            },
+          );
+        });
 
       gsap.utils
         .toArray<HTMLElement>("[data-reveal-group]")
         .forEach((group) => {
           gsap.fromTo(
             Array.from(group.children),
-            { y: 38, opacity: 0 },
+            { y: 16, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 0.75,
-              stagger: 0.1,
-              ease: "power3.out",
+              duration: 0.6,
+              stagger: 0.06,
+              ease: "power4.out",
               scrollTrigger: { trigger: group, start: "top 84%", once: true },
             },
           );
@@ -132,16 +150,6 @@ export function AppMotion({ children }: { children: React.ReactNode }) {
           },
         });
       });
-
-      const ticker = document.querySelector<HTMLElement>(".ticker__track");
-      if (ticker) {
-        gsap.to(ticker, {
-          xPercent: -50,
-          duration: 28,
-          repeat: -1,
-          ease: "none",
-        });
-      }
     });
 
     ScrollTrigger.refresh();

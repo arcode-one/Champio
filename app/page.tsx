@@ -24,17 +24,8 @@ export const metadata: Metadata = createPageMetadata({
 
 });
 
-const tickerMessages = [
-	"Свежесть в масштабе",
-	"От грибницы до отгрузки",
-	"Сбор под вашу заявку",
-	"Стабильный объём круглый год",
-	"Холодовая цепь без разрывов",
-	"Контроль каждой партии",
-];
-
 const heroDescription =
-	"Контролируем каждый этап — от климата в камере до температуры при доставке. Чтобы сети и производства получали стабильный объём точно в срок.";
+	"Контролируем каждый этап: от климата в камере до температуры при доставке. Чтобы сети и производства получали стабильный объём точно в срок.";
 
 export default function Home() {
 	return (
@@ -63,7 +54,6 @@ export default function Home() {
 
 				<div className="home-hero__content container">
 					<div className="home-hero__eyebrow">
-						<span className="home-hero__status-dot" />
 						Круглогодичное производство · B2B
 					</div>
 
@@ -94,30 +84,11 @@ export default function Home() {
 						</ActionLink>
 					</div>
 				</div>
-
-				<div className="home-hero__scroll" aria-hidden="true">
-					<span>ЛИСТАЙТЕ</span>
-					<i />
-				</div>
 			</section>
-
-			<div className="ticker" aria-hidden="true">
-				<div className="ticker__track">
-					{[0, 1].map((copy) => (
-						<div className="ticker__group" key={copy}>
-							{tickerMessages.map((message) => (
-								<span key={`${copy}-${message}`}>
-									{message} <i>✦</i>
-								</span>
-							))}
-						</div>
-					))}
-				</div>
-			</div>
 
 			<section className="intro section section--paper">
 				<div className="intro__grid container">
-					<div className="intro__index">[ 01 — О компании ]</div>
+					<div className="intro__index">[ 01 / О компании ]</div>
 					<div className="intro__content">
 						<h2 className="display-title" data-reveal>
 							Свежесть, которая
@@ -279,7 +250,6 @@ export default function Home() {
 				<div className="b2b__grid container" data-reveal-group>
 					{partnerTypes.map((type) => (
 						<article className="partner-type" key={type}>
-							<CheckIcon />
 							<h3>{type}</h3>
 						</article>
 					))}
