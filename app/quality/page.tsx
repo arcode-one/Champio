@@ -2,7 +2,6 @@ import { imageDimensions } from "@/data/image-dimensions";
 import type { Metadata } from "next";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { ActionLink } from "@/components/ui/ActionLink";
-import { CheckIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { withBasePath } from "@/data/site-url";
 import { createPageMetadata, createPageSchema } from "@/data/seo";
@@ -44,7 +43,7 @@ export default function QualityPage() {
         path="/quality"
         index="04"
         eyebrow="Качество"
-        title={<>Качество<br />шампиньонов —<br />на каждом этапе</>}
+        title={<>Качество<br />шампиньонов<br />на каждом этапе</>}
         description="Проверка готового гриба — только финальная точка. Стабильность партии формируется раньше: в компосте, микроклимате и дисциплине процесса."
         image="/images/champio-quality-hero.webp"
         imageAlt="Ручная проверка качества шампиньонов на производственной линии Champio"
@@ -59,7 +58,7 @@ export default function QualityPage() {
         <div className="quality-system__list container" data-reveal-group>
           {controls.map(([number, title, text]) => (
             <article className="quality-control" key={number}>
-              <span>{number}</span><h3>{title}</h3><p>{text}</p><CheckIcon />
+              <span>{number}</span><h3>{title}</h3><p>{text}</p>
             </article>
           ))}
         </div>

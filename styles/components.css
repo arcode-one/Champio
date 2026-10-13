@@ -14,11 +14,10 @@
   letter-spacing: -0.01em;
   line-height: 1;
   transition:
-    color 0.3s var(--ease-out),
-    background-color 0.3s var(--ease-out),
-    border-color 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    transform 0.3s var(--ease-out);
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.16s var(--ease-out);
 }
 
 .action-link__label {
@@ -34,13 +33,11 @@
   place-items: center;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
-  transition: transform 0.4s var(--ease-out), background-color 0.3s var(--ease-out);
+  transition: transform 0.25s var(--ease-out), background-color 0.2s ease;
 }
 
 .action-link__icon svg { width: 16px; height: 16px; }
-.action-link:hover { transform: translateY(-2px); }
-.action-link:hover .action-link__icon { transform: translateX(3px); }
-.action-link:active { transform: translateY(0); }
+.action-link:active { transform: scale(0.97); }
 .action-link:focus-visible {
   outline: 3px solid rgba(125, 139, 90, 0.42);
   outline-offset: 3px;
@@ -53,18 +50,12 @@
 }
 
 .action-link--light .action-link__icon { background: rgba(23, 32, 24, 0.08); }
-.action-link--light:hover {
-  background: var(--color-cream);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.17);
-}
 
 .action-link--dark {
   background: var(--color-ink);
   color: var(--color-white);
   box-shadow: 0 12px 30px rgba(23, 32, 24, 0.18);
 }
-
-.action-link--dark:hover { background: var(--color-forest); }
 
 .action-link--outline {
   border: 1px solid rgba(23, 32, 24, 0.35);
@@ -73,13 +64,18 @@
 }
 
 .action-link--outline .action-link__icon { background: rgba(23, 32, 24, 0.08); }
-.action-link--outline:hover {
-  border-color: var(--color-ink);
-  background: var(--color-ink);
-  color: var(--color-white);
-}
 
-.action-link--outline:hover .action-link__icon { background: rgba(255, 255, 255, 0.12); }
+@media (hover: hover) and (pointer: fine) {
+  .action-link:hover .action-link__icon { transform: translateX(3px); }
+  .action-link--light:hover { background: var(--color-cream); }
+  .action-link--dark:hover { background: var(--color-forest); }
+  .action-link--outline:hover {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .action-link--outline:hover .action-link__icon { background: rgba(255, 255, 255, 0.12); }
+}
 
 .section-heading {
   display: grid;
@@ -176,7 +172,7 @@
   gap: 20px;
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -259,7 +255,7 @@
 .form-field__label {
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -304,24 +300,21 @@
   line-height: 1;
   box-shadow: 0 12px 30px rgba(23, 32, 24, 0.18);
   transition:
-    background-color 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    transform 0.3s var(--ease-out);
+    background-color 0.2s ease,
+    transform 0.16s var(--ease-out);
 }
 
 .form-submit svg {
   width: 16px;
   height: 16px;
   margin: 7px;
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.25s var(--ease-out);
 }
-.form-submit:hover {
-  background: var(--color-forest);
-  box-shadow: 0 16px 34px rgba(23, 32, 24, 0.24);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .form-submit:hover { background: var(--color-forest); }
+  .form-submit:hover svg { transform: translateX(3px); }
 }
-.form-submit:hover svg { transform: translateX(3px); }
-.form-submit:active { transform: translateY(0); }
+.form-submit:active { transform: scale(0.97); }
 .form-submit:focus-visible {
   outline: 3px solid rgba(125, 139, 90, 0.42);
   outline-offset: 3px;
@@ -336,7 +329,14 @@
   font-size: 13px;
 }
 
-.lead-form__success--visible { display: block; }
+.lead-form__success--visible {
+  display: block;
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), display 0.3s allow-discrete;
+}
+
+@starting-style {
+  .lead-form__success--visible { opacity: 0; transform: translateY(6px); }
+}
 
 @media (max-width: 1200px) {
   .page-hero__media img { object-position: 64% center; }
@@ -383,7 +383,7 @@
     gap: 14px;
     font-size: clamp(10px, 2vw, 12px);
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.06em;
   }
   .page-hero__heading {
     gap: clamp(24px, 4svh, 36px);
